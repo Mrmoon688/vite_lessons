@@ -20,7 +20,32 @@ export const createRecordFormHandler = (event) => {
     ({ id }) => id == formData.get("product_select")
   );
 
-  recordGroup.append(createRecordRow(currentProduct, formData.get("quantity")));
+  const isExitedRecord = document.querySelector(
+    `[product-id ='${currentProduct.id}']`
+  );
+
+  if (isExitedRecord === null) {
+    // ! create new record form or row
+    recordGroup.append(
+      createRecordRow(currentProduct, formData.get("quantity"))
+    );
+  } else {
+    Swal.fire({
+      title: `Are you sure to add quantity to ${currentProduct.name}`,
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, Add it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        updateRecordQuantity(
+          isExitedRecord.getAttribute("row-id"),
+          parseInt(formData.get("quantity"))
+        );
+      }
+    });
+  }
+
   createRecordForm.reset();
 };
 
@@ -65,25 +90,70 @@ export const removeRecord = (rowId) => {
     confirmButtonText: "Yes, delete it!",
   }).then((result) => {
     if (result.isConfirmed) {
-      const currentRecordRow = recordGroup.querySelector(
-        `[row-id ='${rowId}']`
-      );
+      const currentRecordRow = document.querySelector(`[row-id ='${rowId}']`);
       currentRecordRow.remove();
-
-      //   Swal.fire({
-      //     title: "Deleted!",
-      //     text: "Your recorded file has been removed.",
-      //     icon: "success",
-      //   });
     }
   });
 };
+
+// export const quantityAdd = (rowId) => {
+//   const currentRecordRow = document.querySelector(`[row-id ='${rowId}']`);
+
+//   const recordProductPrice = currentRecordRow.querySelector(
+//     ".record-product-price"
+//   );
+//   const recordQuantity = currentRecordRow.querySelector(".record-quantity");
+//   const recordCost = currentRecordRow.querySelector(".record-cost");
+
+//   recordQuantity.innerText = parseInt(recordQuantity.innerText) + 1;
+//   recordCost.innerText =
+//     recordProductPrice.innerText * recordQuantity.innerText;
+// };
+
+// export const quantitySub = (rowId) => {
+//   const currentRecordRow = document.querySelector(`[row-id ='${rowId}']`);
+
+//   const recordProductPrice = currentRecordRow.querySelector(
+//     ".record-product-price"
+//   );
+//   const recordQuantity = currentRecordRow.querySelector(".record-quantity");
+//   const recordCost = currentRecordRow.querySelector(".record-cost");
+
+//   if (recordQuantity.innerText > 1) {
+//     recordQuantity.innerText = parseInt(recordQuantity.innerText) - 1;
+//     recordCost.innerText =
+//       recordProductPrice.innerText * recordQuantity.innerText;
+//   }
+// };
+
+export const updateRecordQuantity = (rowId, newQuantity) => {
+  const currentRecordRow = document.querySelector(`[row-id ='${rowId}']`);
+
+  const recordProductPrice = currentRecordRow.querySelector(
+    ".record-product-price"
+  );
+  const recordQuantity = currentRecordRow.querySelector(".record-quantity");
+  const recordCost = currentRecordRow.querySelector(".record-cost");
+
+  if (newQuantity > 0 || recordQuantity.innerText > 1) {
+    recordQuantity.innerText = parseInt(recordQuantity.innerText) + newQuantity;
+    recordCost.innerText =
+      recordProductPrice.innerText * recordQuantity.innerText;
+  }
+};
+
 export const recordGroupHandler = (event) => {
   if (event.target.classList.contains("record-remove")) {
     const currentRecordRow = event.target.closest(".record-row");
     removeRecord(currentRecordRow.getAttribute("row-id"));
-
-    // removeRecord();
+  } else if (event.target.classList.contains("quantity-add")) {
+    const currentRecordRow = event.target.closest(".record-row");
+    updateRecordQuantity(currentRecordRow.getAttribute("row-id"), 1);
+    // console.log("quantity add button clicked");
+  } else if (event.target.classList.contains("quantity-sub")) {
+    const currentRecordRow = event.target.closest(".record-row");
+    updateRecordQuantity(currentRecordRow.getAttribute("row-id"), -1);
+    // console.log("quantity Sub button clicked");
   }
 };
 

@@ -2,12 +2,13 @@ import { addNewProductBtnHandler } from "./inventory";
 import { createRecordFormHandler, recordGroupHandler } from "./record";
 import {
   addNewProductBtn,
+  checkoutBtn,
   closeSidebarBtn,
   createRecordForm,
   manageInventoryBtn,
   recordGroup,
 } from "./selectors";
-import { closeSidebarBtnHandler, manageInventoryBtnHandler } from "./้handlers";
+import { checkoutHandler, closeSidebarBtnHandler, manageInventoryBtnHandler } from "./้handlers";
 
 const listener = () => {
   manageInventoryBtn.addEventListener("click", manageInventoryBtnHandler);
@@ -15,6 +16,7 @@ const listener = () => {
   addNewProductBtn.addEventListener("click", addNewProductBtnHandler);
   createRecordForm.addEventListener("submit", createRecordFormHandler);
   recordGroup.addEventListener("click",recordGroupHandler)
+  checkoutBtn.addEventListener("click",checkoutHandler)
 };
 
 export default listener;

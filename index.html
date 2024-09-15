@@ -2,12 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="./public/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Invoice App</title>
+    <title>My Demo Invoice App v1.0</title>
     <link rel="shortcut icon" href="./public/logo.png" type="image/x-icon">
     <!-- Primary Meta Tags -->
-    <title>My Todo App</title>
     <meta name="title" content="My Invoice App" />
     <meta name="description" content="My Invoice App" />
 
@@ -37,8 +36,8 @@
       <header class="mb-5">
         <div class="container">
           <div class="py-4">
-            <h1 class="font-sans font-bold text-3xl">MMS Solution</h1>
-            <p class="text-blue-400">Invoice App</p>
+            <h1 class="font-sans font-bold text-3xl print:text-center">MY SALE LIST DEMO APP</h1>
+            <p class="text-blue-400 print:text-center">Invoice App</p>
           </div>
         </div>
       </header>
@@ -46,7 +45,7 @@
       <!-- TODO: Body Section-->
       <section class="">
         <!-- todo: Product option form-->
-        <div class="container mb-5">
+        <div class="container mb-5 block print:hidden">
           <form id="createRecordForm">
             <div
               class="grid grid-cols-4 gap-3 p-5 rounded-sm bg-blue-100 shadow border-slate-300"
@@ -115,7 +114,7 @@
                   <th scope="col" class="px-6 py-5 text-end">Price</th>
                   <th scope="col" class="px-6 py-5 text-end">Quantity</th>
                   <th scope="col" class="px-6 py-5 text-end">Cost</th>
-                  <th scope="col" class="px-6 py-5 text-end">Action</th>
+                  <th scope="col" class="px-6 py-5 text-end table-cell print:hidden">Action</th>
                 </tr>
               </thead>
               <tbody id="recordGroup">
@@ -146,7 +145,7 @@
                     Total
                   </th>
                   <td class="px-6 py-4 text-end " id="recordTotal">0</td>
-                  <td class="px-6 py-4 text-end"></td>
+                  <td class="px-6 py-4 text-end table-cell print:hidden"></td>
                 </tr>
                 <!-- todo: Tax sect -->
                 <tr
@@ -160,7 +159,7 @@
                     Tax
                   </th>
                   <td class="px-6 py-4 text-end" id="recordTax">0</td>
-                  <td class="px-6 py-4 text-end"></td>
+                  <td class="px-6 py-4 text-end table-cell print:hidden"></td>
                 </tr>
 
                 <!-- todo: Net Total sect -->
@@ -175,11 +174,13 @@
                     Net Total
                   </th>
                   <td class="px-6 py-4 text-end" id="recordNetTotal">0</td>
-                  <td class="px-6 py-4 text-end"></td>
+                  <td class="px-6 py-4 text-end table-cell print:hidden"></td>
                 </tr>
               </tfoot>
             </table>
+            
           </div>
+          <p class="text-center print:block mt-5 font-bold text-blue-700 hidden py-3 ">ဝယ်ယူအားပေးမူ့ကို ကျေးဇူးတင်ပါသည်။ သာယာလှပသော နေ့သစ်လေးဖြစ်ပါစေ။</p>
         </div>
       </section>
 
@@ -193,7 +194,7 @@
               <h1 class="font-sans font-bold text-3xl">Manage Inventory</h1>
               <p class="text-blue-400">Available Items</p>
             </div>
-            <button id="closeSidebarBtn">
+            <button id="closeSidebarBtn" class="active:scale-90">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 pointer-events-none">
                 <path stroke-linecap="round" stroke-linejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
               </svg>
@@ -261,19 +262,19 @@
       <!-- TODO: Footer Section -->
       <footer class="mt-auto">
         <div class="container py-2">
-          <div class="flex justify-end gap-3">
+          <div class="flex print:hidden justify-end gap-3">
             <button
             id="manageInventoryBtn"
               type="button"
-              class="px-3 py-2 text-xs font-medium me-2 mb-2 text-gray-900 focus:outline-none bg-white rounded-md border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+              class="active:scale-90 px-3 py-2 text-xs font-medium me-2 mb-2 text-gray-900 focus:outline-none bg-white rounded-md border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
             >
               Manage Inventory
             </button>
             <button
-              type="button"
-              class="px-3 py-2 text-xs font-medium text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 rounded-md text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              id="checkoutBtn"
+              class="active:scale-90 px-3 py-2 text-xs font-medium text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 rounded-md text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
-              Print
+              Check Out
             </button>
           </div>
         </div>
@@ -288,17 +289,27 @@
 
       <!-- TODO: recorded list Template -->
       <template id="recordRowTemplate">
-        <tr class="record-row odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-slate-800 border-b dark:border-gray-700">
+        <tr class="record-row  border-b dark:border-gray-700 group">
           <th 
           scope="row"
           class="record-product-name px-6 py-4 font-medium text-black whitespace-nowrap dark:text-white">Apple</th>
 
           <td class="record-product-price px-6 py-4 text-end">500</td>
-          <td class="record-quantity px-6 py-4 text-end">3</td>
+          <td class=" px-6 py-4 text-end">
+            <button class="quantity-sub border active:scale-90 border-blue-500 text-blue-700 p-0.5 rounded-full hidden group-hover:inline-block"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-3 pointer-events-none   ">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14" />
+            </svg>
+            </button>
+            <span class="record-quantity w-auto inline-block text-center">0</span>
+            <button class="hidden group-hover:inline-block quantity-add active:scale-90 border border-blue-500 text-blue-700 p-0.5 rounded-full"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-3 pointer-events-none">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+            </svg>
+            </button>
+          </td>
           <td class="record-cost px-6 py-4 text-end">1500</td>
-          <td class="px-6 py-4 text-end">
+          <td class="px-6 py-4 text-end table-cell print:hidden">
             <button 
-            class="record-remove font-medium text-blue-600 dark:text-blue-500 hover:underline">Remove</button>
+            class="record-remove font-medium text-blue-600 dark:text-blue-500 hover:underline active:scale-90">Remove</button>
           </td>
 
 
