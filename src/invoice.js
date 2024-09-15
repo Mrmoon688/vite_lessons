@@ -1,6 +1,6 @@
 import initialRender from "./initialRender";
 import listener from "./listener";
-import observer from "./observer";
+import observer from "./observers";
 
 class Invoice {
   init() {
