@@ -12,3 +12,8 @@ export const productCardTemplate = document.querySelector(
 );
 export const productSelect = document.querySelector("#productSelect");
 export const createRecordForm = document.querySelector("#createRecordForm");
+export const recordRowTemplate = document.querySelector("#recordRowTemplate");
+export const recordGroup = document.querySelector("#recordGroup");
+export const recordTax = document.querySelector("#recordTax");
+export const recordTotal = document.querySelector("#recordTotal");
+export const recordNetTotal = document.querySelector("#recordNetTotal");
