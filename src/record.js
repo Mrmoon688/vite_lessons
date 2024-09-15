@@ -68,7 +68,6 @@ export const removeRecord = (rowId) => {
       const currentRecordRow = recordGroup.querySelector(
         `[row-id ='${rowId}']`
       );
-      console.log(currentRecordRow);
       currentRecordRow.remove();
 
       //   Swal.fire({
